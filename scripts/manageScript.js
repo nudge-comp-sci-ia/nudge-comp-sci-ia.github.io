@@ -49,3 +49,15 @@ for (let i = 0; i < allTasks.length; i++)
     tasksDiv.appendChild(plant);
     tasksDiv.appendChild(separator);
 }
+
+// if there are no tasks, say so
+if (!allTasks.length)
+{
+    let noTasks = document.createElement("p");
+    noTasks.textContent = "No tasks yet, boss";
+    noTasks.style.fontSize = "64px";
+    noTasks.style.fontFamily = "franklin gothic";
+    
+    let tasksDiv = document.querySelector("div.tasks");
+    tasksDiv.appendChild(noTasks);
+}
