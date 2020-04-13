@@ -227,8 +227,8 @@ function checkNotifications()
 
     for (let i = 0; i < allTasks.length; i++)
     {
-        if (!allTasks[i].active) { continue; } // just ignore it if it's already dead
-        if (currentTime < allTasks[i].time) { break; } // we've passed all the tasks that may need to be notified
+        // remember that allTasks is sorted by time, with inactive tasks at the end
+        if (currentTime < allTasks[i].time || !allTasks[i].active) { break; } // we've passed all the tasks that may need to be notified
 
         // if we're still here, a notification needs to be given
 
@@ -293,6 +293,13 @@ function checkNotifications()
             allTasks[i].time = new Date(currentTime.getTime() + 15 * 60000);
             alert("Okay, 15 more minutes. Do it soon!");
         }
+
+        // if allTasks[i].active changed to false, we should move it to the end of allTasks so that we don't need to worry about it anymore
+
+        if (!allTasks[i].active)
+        {
+            allTasks = allTasks.concat(allTasks.splice(i, 1));
+        }
     }
 
     // changes may have been made to the state of the tasks, so we need to flush the garden images now
@@ -329,5 +336,52 @@ function notify(msg)
                 let notification = new Notification(msg);
             }
         });
+    }
+}
+
+
+// separated function to handle image choice that can be used on all pages
+
+function chooseImage(task, img)
+{
+    if(!task.interval)
+    {
+        // interval was undefined: is a OneTask. plant a tree
+
+        if(task.completed)
+        {
+            // was completed. live tree
+            img.src = "img/grownTree.png";
+        }
+        else if (!task.active)
+        {
+            // was neglected. dead tree
+            img.src = "img/deadTree.png";
+        }
+        else
+        {
+            // not yet complete. growing tree
+            img.src = "img/youngTree.png";
+        }
+    }
+    else
+    {
+        // interval was defined: is a Habit. plant a flowerbed
+
+        if (!task.active)
+        {
+            // was neglected. dead flowers
+            img.src = "img/deadFlowers.png";
+        }
+        else if (task.fulfilled)
+        {
+            // in bloom
+            img.src = "img/openFlowers.png";
+        }
+        else
+        {
+            // out of bloom
+            img.src = "img/closedFlowers.png";
+        }
     }
 }

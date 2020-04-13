@@ -19,7 +19,7 @@ deleteAll.onclick = function()
 }
 
 
-// list out the tasks, along with a garbage can icon next to them
+// list out the tasks, along with their corresponding plant next to them
 
 for (let i = 0; i < allTasks.length; i++)
 {
@@ -27,22 +27,21 @@ for (let i = 0; i < allTasks.length; i++)
     tasksDiv.style.textAlign = "right";
     tasksDiv.style.padding = "5px 125px 5px 75px";
 
-    let taskLabel = document.createElement("label");
-    taskLabel.for = "trash";
+    let taskLabel = document.createElement("p");
     taskLabel.textContent = allTasks[i].name;
     taskLabel.style.fontSize = "72px";
+    taskLabel.style.display = "inline";
     taskLabel.style.position = "relative";
     taskLabel.style.bottom = "9px";
-    taskLabel.style.right = "80px";
+    taskLabel.style.right = "60px";
+    taskLabel.style.fontFamily = "franklin gothic";
 
-    let trashCan = document.createElement("img");
-    trashCan.src = "./img/trashcan.png";
+    let plant = document.createElement("img");
+    chooseImage(allTasks[i], plant);
+
+    let separator = document.createElement("p");
 
     tasksDiv.appendChild(taskLabel);
-    tasksDiv.appendChild(trashCan);
+    tasksDiv.appendChild(plant);
+    tasksDiv.appendChild(separator);
 }
-
-
-// TODO: give the garbage cans some functionality
-// would be doable if I had linked them to the objects they were representing;
-//     then I could easily attach which garbage can was pressed with which task to remove

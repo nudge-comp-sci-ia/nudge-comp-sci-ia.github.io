@@ -197,7 +197,8 @@ function confirmTask()
         }
 
         // make a new OneTask with the info and add it to allTasks in correct position
-        // allTasks is sorted by reminder time. need to compare times and insert
+        // allTasks is sorted by reminder time. need to compare times and insert once the time we're looking at is too much
+        // auto inserts the task if we find an inactive task, since by definition inactive tasks are at the end of the list
         // needed the first if statement in case allTasks is empty otherwise the comparison
         //     won't work and the task won't get added
 
@@ -211,7 +212,7 @@ function confirmTask()
             let inserted = false;
             for (let i = 0; i < allTasks.length; i++)
             {
-                if (allTasks[i].time > task.time)
+                if (allTasks[i].time > task.time || !allTasks[i].active)
                 {
                     allTasks.splice(i, 0, task);
                     inserted = true;
@@ -256,7 +257,7 @@ function confirmTask()
             let inserted = false;
             for (let i = 0; i < allTasks.length; i++)
             {
-                if (allTasks[i].time > task.time)
+                if (allTasks[i].time > task.time || !allTasks[i].active)
                 {
                     allTasks.splice(i, 0, task);
                     inserted = true;

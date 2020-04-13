@@ -19,32 +19,6 @@ manageTasks.onclick = function()
 flushGarden(); // set up garden once on startup. will be refreshed upon task updates in Task.js
 
 
-// customizable username that will affect homescreen heading
-
-function setUserName()
-{
-    let myName = prompt("Please enter your name.");
-    if (!myName || myName === null)
-    {
-        setUserName();
-    }
-    else
-    {
-        localStorage.setItem("_name", myName);
-        heading.textContent = "Welcome, " + myName;
-    }
-}
-
-if (!localStorage.getItem("_name") || localStorage.getItem("_name") === null)
-{
-    setUserName();
-}
-else
-{
-    let storedName = localStorage.getItem("_name");
-    heading.textContent = "Welcome, " + storedName;
-}
-
 // add functionality to the button to change the username
 
 changeName.style.position = "relative";
@@ -87,48 +61,30 @@ function flushGarden()
 }
 
 
-// separated function to handle image choice to break up code segments a little more
+// customizable username that will affect homescreen heading
+// stores the name in localstorage. asks for a name if no name can be found,
+//     and ensures that name entered cannot be empty string
 
-function chooseImage(task, img)
+function setUserName()
 {
-    if(!task.interval)
+    let myName = prompt("Please enter your name.");
+    if (!myName || myName === null)
     {
-        // interval was undefined: is a OneTask. plant a tree
-
-        if(task.completed)
-        {
-            // was completed. live tree
-            img.src = "img/grownTree.png";
-        }
-        else if (!task.active)
-        {
-            // was neglected. dead tree
-            img.src = "img/deadTree.png";
-        }
-        else
-        {
-            // not yet complete. growing tree
-            img.src = "img/youngTree.png";
-        }
+        setUserName();
     }
     else
     {
-        // interval was defined: is a Habit. plant a flowerbed
-
-        if (!task.active)
-        {
-            // was neglected. dead flowers
-            img.src = "img/deadFlowers.png";
-        }
-        else if (task.fulfilled)
-        {
-            // in bloom
-            img.src = "img/openFlowers.png";
-        }
-        else
-        {
-            // out of bloom
-            img.src = "img/closedFlowers.png";
-        }
+        localStorage.setItem("_name", myName);
+        heading.textContent = "Welcome, " + myName;
     }
+}
+
+if (!localStorage.getItem("_name"))
+{
+    setUserName();
+}
+else
+{
+    let storedName = localStorage.getItem("_name");
+    heading.textContent = "Welcome, " + storedName;
 }
