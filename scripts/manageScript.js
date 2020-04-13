@@ -10,12 +10,16 @@ goHome.onclick = function()
 
 deleteAll.onclick = function()
 {
-    // wipe all elements from allTasks, then return home
-    while(allTasks.length)
+    // warning dialog for confirmation
+    if (prompt("Are you sure you want to delete all tasks? (yes/no)").toLowerCase().startsWith('y'))
     {
-        allTasks.pop();
+        // wipe all elements from allTasks, then return home
+        while(allTasks.length)
+        {
+            allTasks.pop();
+        }
+        window.open("index.html", "_self");
     }
-    window.open("index.html", "_self");
 }
 
 
