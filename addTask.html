@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Nudge - Add A Task</title>
+        <link href="styles/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <h1>Add A Task</h1>
+
+        <!-- Radio buttons for single or ongoing tasks -->
+        <div class="taskType">
+            <label for="onetask">Single Task</label><input id="onetask" type="radio" class="radio" name="taskType" value="onetask" checked>
+            <label for="habit">Ongoing Task</label><input id="habit" type="radio" class="radio" name="taskType" value="habit">
+        </div>
+
+        <!-- Name entry field -->
+        <div class="nameEntry">
+            <label for="taskName">Enter task name:</label>
+            <input id="taskName" type="text" placeholder="">
+        </div>
+
+        <!-- Details field. Filled in with javascript depending on radio selection -->
+        <div class="detailDiv"></div>
+
+        <button class="confirm">Confirm Add Task</button>
+        <button class="goHome">Cancel (Return to Homescreen)</button>
+
+        <!-- Implementation of JavaScript after document has been loaded -->
+        <script src="scripts/Task.js"></script>
+        <script src="scripts/addScript.js"></script>
+    </body>
+</html>

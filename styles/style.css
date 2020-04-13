@@ -1,0 +1,68 @@
+html
+{
+    font-size: 12px;
+    background-color: peru;
+}
+
+body
+{
+    width: calc(100% - 100px);
+    height: 600px;
+    margin: 0 auto;
+    background-color: #00ff88;
+    padding: 20px;
+    color: brown;
+    text-align: center;
+}
+
+h1
+{
+    font-family: "Lucida Sans";
+    font-size: 50px;
+    text-align: center;
+}
+
+div.main
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+div
+{
+    text-align: center;
+    padding: 5px;
+}
+
+button
+{
+    width: 80%;
+    padding: 20px;
+    font-size: xx-large;
+    color: brown;
+    background-color: #ffbb88;
+}
+
+label
+{
+    font-size: 24px;
+    font-family: "Lucida Sans";
+    padding: 5px;
+
+}
+
+input.radio
+{
+    scale: 1.5;
+    margin: 5px;
+}
+
+div.garden
+{
+    position: relative;
+    height: 400px;
+    margin: 0 0 0 50px;
+    padding: 20px 20px 20px 20px;
+    border: solid black;
+}
