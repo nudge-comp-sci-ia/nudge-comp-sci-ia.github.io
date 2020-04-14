@@ -180,7 +180,7 @@ function confirmTask()
         // OneTask: collect name, completion time
 
         let name = document.getElementById("taskName").value;
-        if (!name) { name = "MyTask"; }
+        if (!name) { return false; }
 
         let month = document.getElementById("month").value;
         let day = document.getElementById("day").value;
@@ -226,7 +226,7 @@ function confirmTask()
     {
         // Habit: collect name, time interval
         let name = document.getElementById("taskName").value;
-        if (!name) { name = "MyHabit"; }
+        if (!name) { return false; }
 
         // used iDay, etc. because day, etc. still points to the OneTask selection series.
         let day = Number(document.getElementById("iDay").value);
@@ -235,7 +235,7 @@ function confirmTask()
 
         // get the total number of minutes as the interval
         let interval = day * 24 * 60 + hour * 60 + minute;
-        if (!interval) { interval = 60; } // if the interval was left as 0, default to 1 hour
+        if (!interval) { return false; } // if the interval was left as 0, fails
 
         // add the interval to the current time to get the first reminder time
         let nextDate = new Date();

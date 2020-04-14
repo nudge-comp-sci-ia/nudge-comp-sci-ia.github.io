@@ -88,6 +88,7 @@ class OneTask extends Task
 
     /*--- information export ---*/
     // overrides Task.exportInfo() with added detail of this._completed
+    // needed to convert the date into an array to avoid information loss
 
     exportInfo()
     {
@@ -104,8 +105,7 @@ class Habit extends Task
     {
         // constructor for subclass Habit
         // calls the superclass constructor to set name, time, and active variables
-        // additionally asks for the interval in which the habit is to be completed
-        // defines fulfilled as false upon creation and strikes as 0 upon creation
+        // additionally asks for the interval in which the habit is to be completed, fulfilled status, and number of current strikes
 
         super(name, time, active);
         this._interval = interval;
